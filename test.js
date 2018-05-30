@@ -22,6 +22,12 @@ let coinResult = coinDP.run((item,nowPurpose)=>{
         return -2;
     }
 });
+/**
+ * coinResult：
+ * [ { coin: Coin { much: 5 }, num: 2 },
+ * { coin: Coin { much: 2 }, num: 1 },
+ * { coin: Coin { much: 1 }, num: 1 } ]
+ */
 console.log(coinResult)
 
 //sort by dynamic programming
@@ -40,5 +46,9 @@ let sortResult = sortDP.run((item,nowPurpose)=>{
     countIn++;
     if (countIn>purpose){return -1;} else {return -2;}
 });
+/**
+ * sortResult：
+ * [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+ */
 console.log(sortResult)
 
