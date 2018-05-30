@@ -17,9 +17,9 @@ let coinResult = coinDP.run((item,nowPurpose)=>{
     if (money<=purpose-totalMoney)
     {
         result.push({coin:item,num:itemResult});
-        if (totalMoney+money==purpose){return -1;}
+        if (totalMoney+money==purpose){return DynamicProgramming.RETURN_FIND;}
         totalMoney+=money;
-        return -2;
+        return DynamicProgramming.BREAK_FIND;
     }
 });
 /**
@@ -44,7 +44,7 @@ let sortResult = sortDP.run((item,nowPurpose)=>{
 },(item,itemResult,purpose,result)=>{
     result[itemResult] = item;
     countIn++;
-    if (countIn>purpose){return -1;} else {return -2;}
+    if (countIn>purpose){return DynamicProgramming.RETURN_FIND;} else {return DynamicProgramming.BREAK_FIND;}
 });
 /**
  * sortResult：

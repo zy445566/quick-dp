@@ -36,9 +36,9 @@ class DynamicProgramming {
                 );
                 if (isAgainRun<0)
                 {
-                    if (isAgainRun==-1){return result;}
-                    if (isAgainRun==-2){break;}
-                    if (isAgainRun==-3){continue;}
+                    if (isAgainRun==DynamicProgramming.RETURN_FIND){return result;}
+                    if (isAgainRun==DynamicProgramming.BREAK_FIND){break;}
+                    if (isAgainRun==DynamicProgramming.CONTINUE_FIND){continue;}
                 }
                 
             }
@@ -51,5 +51,8 @@ class DynamicProgramming {
         return this.findResult(findResultFunc);
     }
 }
+DynamicProgramming.RETURN_FIND=-1;
+DynamicProgramming.BREAK_FIND = -2;
+DynamicProgramming.CONTINUE_FIND = -3;
 
 module.exports = DynamicProgramming;
