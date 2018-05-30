@@ -14,7 +14,7 @@ class DynamicProgramming {
             for(let nowPurpose=0;nowPurpose<=this.purpose;nowPurpose++)
             {
                 singleResultList[itemKey][nowPurpose] = getSingleResultFunc(
-                    this.itemList[itemKey],nowPurpose
+                    this.itemList[itemKey],itemKey,nowPurpose,singleResultList
                 );
             }
         }
@@ -31,7 +31,8 @@ class DynamicProgramming {
                 let isAgainRun = findResultFunc(
                     this.itemList[itemKey],
                     singleResultList[itemKey][nowPurpose],
-                    this.purpose,result
+                    itemKey,nowPurpose,
+                    this.purpose,result,singleResultList
                 );
                 if (isAgainRun<0)
                 {
