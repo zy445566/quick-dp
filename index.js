@@ -3,26 +3,25 @@ class DynamicProgramming {
     {
         this.itemList = itemList;
         this.purpose = purpose;
-        this.singleResultList = [];
     }
 
     getSingleResultList(getSingleResultFunc) 
     {
-        this.singleResultList = [];
+        let singleResultList = [];
         for (let itemKey=0;itemKey<this.itemList.length;itemKey++) 
         {
-            this.singleResultList[itemKey] = [];
+            singleResultList[itemKey] = [];
             for(let nowPurpose=0;nowPurpose<=this.purpose;nowPurpose++)
             {
-                this.singleResultList[itemKey][nowPurpose] = getSingleResultFunc(
+                singleResultList[itemKey][nowPurpose] = getSingleResultFunc(
                     this.itemList[itemKey],nowPurpose
                 );
             }
         }
-        return this.singleResultList;
+        return singleResultList;
     }
 
-    findResult(findResultFunc)
+    findResult(findResultFunc,singleResultList)
     {
         let result = [];
         for (let itemKey=this.itemList.length-1;itemKey>=0;itemKey--) 
@@ -31,7 +30,7 @@ class DynamicProgramming {
             {
                 let isAgainRun = findResultFunc(
                     this.itemList[itemKey],
-                    this.singleResultList[itemKey][nowPurpose],
+                    singleResultList[itemKey][nowPurpose],
                     this.purpose,result
                 );
                 if (isAgainRun<0)
@@ -47,8 +46,8 @@ class DynamicProgramming {
 
     run(getSingleResultFunc,findResultFunc)
     {
-        this.getSingleResultList(getSingleResultFunc);
-        return this.findResult(findResultFunc);
+        let singleResultList = this.getSingleResultList(getSingleResultFunc);
+        return this.findResult(findResultFunc,singleResultList);
     }
 }
 DynamicProgramming.RETURN_FIND=-1;
