@@ -44,12 +44,25 @@ console.log("change coin question:")
  */
 console.log(coinResult)
 
-//bag question by dynamic programming
+//01 bag question by dynamic programming
 class Bag
 {
     constructor(weight)
     {
         this.weight = weight;       
+    }
+    static getMinWeightThing(ThingList)
+    {
+        let minWeight = 0;
+        for(let i =0;i<ThingList.length;i++)
+        {
+            if(i==0) {
+                minWeight = ThingList[i].weight;
+            }else{
+                if (minWeight>ThingList[i].weight){minWeight = ThingList[i].weight;}
+            }
+        }
+        return minWeight;
     }
 }
 class Thing
@@ -62,6 +75,7 @@ class Thing
 }
 let bag = new Bag(8);
 let ThingList = [new Thing(2,3),new Thing(3,4),new Thing(4,5),new Thing(5,6)];
+let minWeight = Bag.getMinWeightThing(ThingList);
 let bagDP = new DynamicProgramming(ThingList,bag.weight);
 let unusedWeight = bag.weight;
 let bagResult = bagDP.run((item,itemKey,nowPurpose,singleResultList)=>{
@@ -96,7 +110,7 @@ let bagResult = bagDP.run((item,itemKey,nowPurpose,singleResultList)=>{
             return DynamicProgramming.CONTINUE_FIND;
         }
         unusedWeight = unusedWeight-item.weight;
-        if (unusedWeight==0){return DynamicProgramming.RETURN_FIND;}
+        if (itemKey ==0 || unusedWeight<minWeight){return DynamicProgramming.RETURN_FIND;}
         return DynamicProgramming.BREAK_FIND;
     } else {
         return DynamicProgramming.BREAK_FIND;
