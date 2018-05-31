@@ -97,7 +97,7 @@ let bagResult = bagDP.run((item,itemKey,nowPurpose,singleResultList)=>{
             return DynamicProgramming.CONTINUE_FIND;
         }
         unusedWeight = unusedWeight-item.weight;
-        if (unusedWeight<minWeight){return DynamicProgramming.RETURN_FIND;}
+        if (itemKey ==0 || unusedWeight<minWeight){return DynamicProgramming.RETURN_FIND;}
         return DynamicProgramming.BREAK_FIND;
     } else {
         return DynamicProgramming.BREAK_FIND;
